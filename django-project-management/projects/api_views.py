@@ -6,6 +6,7 @@ import settings
 
 from projects.models import *
 from projects.forms import EditPID
+from projects.misc import handle_form_errors, check_project_read_acl, check_project_write_acl, return_json_success, handle_generic_error
 
 if settings.DEBUG:
     log = logging.getLogger('projects-api-views')
@@ -34,6 +35,10 @@ class ProjectResourceHandler(BaseHandler):
 
         log.debug("GET request from user %s for project number %s" % ( request.user, project_number ))
         proj = Project.objects.get(project_number=project_number)
+
+        if not check_project_read_acl(proj, request.user):
+            log.debug("Refusing GET request for project %s from user %s" % ( project_number, request.user ))
+            return rc.FORBIDDEN
         return proj
 
     def update(self, request, project_number):
@@ -42,6 +47,11 @@ class ProjectResourceHandler(BaseHandler):
         log.debug("PUT request from user %s for project number %s" % ( request.user, project_number ))
         proj = Project.objects.get(project_number=project_number)
         log.debug("Fetched object from database %s" % proj)
+
+        if not check_project_write_acl(proj, request.user):
+            log.debug("Refusing PUT request for project %s from user %s" % ( project_number, request.user ))
+            return rc.FORBIDDEN
+
         form = EditPID(request.POST, instance=proj)
         if form.is_valid():
             t = form.save()
@@ -64,14 +74,15 @@ class ProjectResourceHandler(BaseHandler):
         log.debug("PUT request from user %s for project number %s" % ( request.user, project_number ))
         proj = Project.objects.get(project_number=project_number)
         log.debug("Fetched object from database %s" % proj)
+
+        if not check_project_write_acl(proj, request.user):
+            log.debug("Refusing PUT request for project %s from user %s" % ( project_number, request.user ))
+            return rc.FORBIDDEN
+
         proj.project_status = 5
         proj.save()
         log.debug("Archived project %s" % proj)
         return rc.ALL_OK
-
-
-
-
 
 class ProjectListHandler(BaseHandler):
     """ 

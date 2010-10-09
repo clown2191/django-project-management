@@ -45,7 +45,8 @@ def check_project_read_acl(project, user):
                 if group in user.groups.all():
                         allowed_access = True
         if not allowed_access:
-                return Http404
+                return False
+        return True
 
 def check_project_write_acl(project, user):
         allowed_access = False
@@ -53,7 +54,8 @@ def check_project_write_acl(project, user):
                 if group in user.groups.all():
                         allowed_access = True
         if not allowed_access:
-                return Http404
+                return False
+        return True
 
 def all_company_options():
         ret = [('', '------') ]
