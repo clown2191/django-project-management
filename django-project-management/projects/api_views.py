@@ -1,9 +1,12 @@
+from django.contrib.auth.models import User
+
+
 from piston.handler import BaseHandler
 from piston.utils import rc, require_mime, require_extended, validate
 import settings
 
 from projects.models import *
-from projects.forms import EditPID
+from projects.forms import EditPID, CompanyForm
 from projects.misc import handle_form_errors, check_project_read_acl, check_project_write_acl, return_json_success, handle_generic_error
 
 import settings
@@ -77,7 +80,7 @@ class ProjectResourceHandler(BaseHandler):
 class ProjectListHandler(BaseHandler):
     """ 
     URI: /api/projects/
-    VERBS: GET, PUT
+    VERBS: GET, POST
 
     Returns a list of projects the user is allowed to see
     """
@@ -108,3 +111,105 @@ class ProjectListHandler(BaseHandler):
         log.debug("GET request from user %s for project list" % request.user)
         projects = Project.objects.filter(active=True, read_acl__in=request.user.groups.all()).exclude(project_status=5).distinct()
         return projects
+
+class CompanyListHandler(BaseHandler):
+    """
+    URI: /api/companies/
+    VERBS: GET, POST
+
+    Returns a list of companies
+    """
+
+    allowed_methods = ('GET', 'POST')
+    models = Company
+
+    def read(self, request):
+        """ Return a list of company objects """
+
+        log.debug("GET request from user %s for company list" % request.user)
+        return Company.objects.filter(active=True)
+
+    @validate(CompanyForm)
+    def create(self, request):
+        """ Create a new Company """
+
+        form = CompanyForm(request.POST)
+        t = form.save()
+        log.debug("Accepting request from user %s to create company %s")
+        return t
+
+class TeamManagersListHandler(BaseHandler):
+    """
+    URL: /api/projects/%project_number%/team_managers/
+    VERBS: GET
+
+    Return a list of team managers
+    """
+
+    allowed_methods = ('GET',)
+
+    def read(self, request, project_number):
+
+        log.debug("GET request from user %s for project %s team managers" % ( request.user, project_number ))
+        proj = Project.objects.get(project_number=project_number)
+
+        if not check_project_read_acl(proj, request.user):
+            log.debug("Refusing GET request for project %s from user %s" % ( project_number, request.user ))
+            return rc.FORBIDDEN
+        return User.objects.filter(id__in=proj.team_managers.all()).distinct().order_by('first_name')
+
+
+class NonTeamManagersListHandler(BaseHandler):
+    """
+    URL: /api/projects/%project_number%/non_team_managers/
+    VERBS: GET
+
+    Return a list of users associated with the project but are not team leaders
+    """
+
+    allowed_methods = ('GET',)
+
+    def read(self, request, project_number):
+
+        log.debug("GET request from user %s for project %s non team managers" % ( request.user, project_number ))
+        proj = Project.objects.get(project_number=project_number)
+
+        if not check_project_read_acl(proj, request.user):
+            log.debug("Refusing GET request for project %s from user %s" % ( project_number, request.user ))
+            return rc.FORBIDDEN
+        return User.objects.filter(is_active=True, groups__in=proj.read_acl.all()).exclude(id__in=proj.team_managers.all()).distinct().order_by('first_name')
+
+
+class ResourcesListHandler(BaseHandler):
+    """
+    URL: /api/projects/%project_number%/resources/
+    VERBS: GET
+
+    Return a list of users associated with the project via the read_acl
+    """
+
+    allowed_methods = ('GET',)
+
+    def read(self, request, project_number):
+
+        log.debug("GET request from user %s for project %s resources" % ( request.user, project_number ))
+        proj = Project.objects.get(project_number=project_number)
+
+        if not check_project_read_acl(proj, request.user):
+            log.debug("Refusing GET request for project %s from user %s" % ( project_number, request.user ))
+            return rc.FORBIDDEN
+        return User.objects.filter(is_active=True, groups__in=proj.read_acl.all()).distinct().order_by('first_name')
+
+class SkillsetListHandler(BaseHandler):
+    """
+    URL: /api/skillsets/
+    VERBS: GET
+
+    Return a skillsets configured in the tool
+    """
+
+    allowed_methods = ('GET',)
+
+    def read(self, request):
+        log.debug("GET request from user %s for skillsets" % request.user)
+        return Skillset.objects.all()

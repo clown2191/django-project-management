@@ -4,6 +4,12 @@ from projects.models import *
 from tinymce.widgets import TinyMCE
 from projects.misc import all_username_options, all_company_options
 
+class CompanyForm(ModelForm):
+    """ Used to create new Company objects via the REST API """
+
+    class Meta:
+        model = Company
+        fields = ('company_name', 'logo')
 
 class EditPID(ModelForm):
         
