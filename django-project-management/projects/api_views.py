@@ -1,5 +1,3 @@
-import logging
-
 from piston.handler import BaseHandler
 from piston.utils import rc, require_mime, require_extended, validate
 import settings
@@ -8,16 +6,8 @@ from projects.models import *
 from projects.forms import EditPID
 from projects.misc import handle_form_errors, check_project_read_acl, check_project_write_acl, return_json_success, handle_generic_error
 
-if settings.DEBUG:
-    log = logging.getLogger('projects-api-views')
-    log.setLevel(logging.DEBUG)
-    h = logging.StreamHandler()
-    f = logging.Formatter("%(levelname)s %(asctime)s module=%(module)s fn=%(funcName)s() line=%(lineno)d msg=%(message)s")
-    h.setFormatter(f)
-    log.addHandler(h)
-else:
-    log.setLevel(logging.NOTSET)
-
+import settings
+log = settings.get_debug_settings('api-views')
 
 class ProjectResourceHandler(BaseHandler):
     """

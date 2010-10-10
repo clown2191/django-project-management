@@ -1,5 +1,7 @@
 # Django settings for dj_projects project.
 import os
+import logging
+
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True
@@ -119,3 +121,15 @@ CMS_USE_TINYMCE = True
 SERIALIZATION_MODULES = {
     'json': 'wadofstuff.django.serializers.json'
 }
+
+def get_debug_settings(log_name):
+    log = logging.getLogger(log_name)
+    if DEBUG:
+        log.setLevel(logging.DEBUG)
+        h = logging.StreamHandler()
+        f = logging.Formatter("%(levelname)s %(asctime)s module=%(module)s fn=%(funcName)s() line=%(lineno)d msg=%(message)s")
+        h.setFormatter(f)
+        log.addHandler(h)
+    else:
+        log.setLevel(logging.NOTSET)
+    return log
