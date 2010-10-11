@@ -64,12 +64,12 @@ class ProjectResourceHandler(BaseHandler):
     def delete(self, request, project_number):
         """ Put the project into archived state, not actually delete it """
 
-        log.debug("PUT request from user %s for project number %s" % ( request.user, project_number ))
+        log.debug("DELETE request from user %s for project number %s" % ( request.user, project_number ))
         proj = Project.objects.get(project_number=project_number)
         log.debug("Fetched object from database %s" % proj)
 
         if not check_project_write_acl(proj, request.user):
-            log.debug("Refusing PUT request for project %s from user %s" % ( project_number, request.user ))
+            log.debug("Refusing DELETE request for project %s from user %s" % ( project_number, request.user ))
             return rc.FORBIDDEN
 
         proj.project_status = 5
