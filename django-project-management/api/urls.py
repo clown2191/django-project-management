@@ -5,6 +5,7 @@ from projects.api_views import ProjectResourceHandler, ProjectListHandler, Compa
         TeamManagersListHandler, NonTeamManagersListHandler, ResourcesListHandler
 from risks.api_views import RiskResourceHandler, RiskListHandler, \
         UserRiskListHandler
+from deliverables.api_views import DeliverableResourceHandler, DeliverableListHandler \
 
 auth = HttpBasicAuthentication(realm="My Realm")
 ad = { 'authentication': auth }
@@ -22,6 +23,10 @@ risk_handler = Resource(RiskResourceHandler, **ad)
 risk_list_handler = Resource(RiskListHandler, **ad)
 user_risk_list_handler = Resource(UserRiskListHandler, **ad)
 
+# Handlers defined in deliverables.api_views
+deliverable_handler = Resource(DeliverableResourceHandler, **ad)
+deliverable_list_handler = Resource(DeliverableListHandler, **ad)
+
 urlpatterns = patterns('',
     # URLs handled in projects.api_views
     (r'projects/(?P<project_number>[-\w\./\s]+)/team_managers/$', team_managers_handler),
@@ -35,5 +40,9 @@ urlpatterns = patterns('',
     (r'risks/(?P<project_number>[-\w\./\s]+)/(?P<risk_number>[-\w\./\s]+)/$', risk_handler),
     (r'risks/(?P<project_number>[-\w\./\s]+)/$', risk_list_handler),
     (r'risks/$', user_risk_list_handler),
+
+    # URLs handled in deliverables.api_views
+    (r'deliverables/(?P<project_number>[-\w\./\s]+)/(?P<deliverable_id>[-\w\./\s]+)/$', deliverable_handler),
+    (r'deliverables/(?P<project_number>[-\w\./\s]+)/$', deliverable_list_handler),
 
 )
