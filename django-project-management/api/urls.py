@@ -31,6 +31,21 @@ deliverable_list_handler = Resource(DeliverableListHandler, **ad)
 lesson_handler = Resource(LessonResourceHandler, **ad)
 lesson_list_handler = Resource(LessonListHandler, **ad)
 
+# Handlers defined in wbs.api_views
+wbs_handler = Resource(WBSResourceHandler, **ad)
+wbs_list_handler = Resource(WBSListHandler, **ad)
+#wbs_reorder_handler = Resource(WBSReorderHandler, **ad)
+user_wbs_list_handler = Resource(UserWBSListHandler, **ad)
+
+stageplan_handler = Resource(StageplanResourceHandler, **ad)
+stageplan_list_handler = Resource(StageplanListHandler, **ad)
+
+engineeringday_handler = Resource(EngineeringDayResourceHandler, **ad)
+engineeringday_project_list_handler = Resource(EngineeringDayProjectListHandler, **ad)
+engineeringday_wbs_list_handler = Resource(EngineeringDayWBSListHandler, **ad)
+engineeringday_resource_handler = Resource(EngineeringDayResourceFinderHandler, **ad)
+user_engineeringday_list_handler = Resource(UserEngineeringDayListHandler, **ad)
+
 urlpatterns = patterns('',
     # URLs handled in projects.api_views
     (r'projects/(?P<project_number>[-\w\./\s]+)/team_managers/$', team_managers_handler),
@@ -52,5 +67,19 @@ urlpatterns = patterns('',
     # URLs handled in lessons.api_views
     (r'lessons/(?P<project_number>[-\w\./\s]+)/(?P<lesson_id>[-\w\./\s]+)/$', lesson_handler),
     (r'lessons/(?P<project_number>[-\w\./\s]+)/$', lesson_list_handler),
+
+    # URLs handled in wbs.api_views
+    (r'wbs/(?P<project_number>[-\w\./\s]+)/(?P<wbs_id>[-\w\./\s]+)/$', wbs_handler),
+    (r'wbs/(?P<project_number>[-\w\./\s]+)/$', wbs_list_handler),
+    #(r'wbs/(?P<project_number>[-\w\./\s]+)/reorder/$', wbs_reorder_handler),
+    (r'wbs/$', user_wbs_list_handler),
+
+    (r'stageplan/(?P<project_number>[-\w\./\s]+)/(?P<stageplan_id>[-\w\./\s]+)/$', stageplan_handler),
+    (r'stageplan/(?P<project_number>[-\w\./\s]+)/$', stageplan_list_handler),
+
+    (r'engineeringdays/(?P<project_number>[-\w\./\s]+)/$', engineeringday_project_list_handler),
+    (r'engineeringdays/(?P<project_number>[-\w\./\s]+)/(?P<wbs_id>[-\w\./\s]+)$', engineeringday_wbs_list_handler),
+    (r'engineeringdays/(?P<project_number>[-\w\./\s]+)/(?P<eday_id>[-\w\./\s]+)/$', engineeringday_handler),
+    (r'resources/(?P<project_number>[-\w\./\s]+)/(?P<wbs_id>[-\w\./\s]+)/resources/$', engineeringday_resource_handler),
 
 )
