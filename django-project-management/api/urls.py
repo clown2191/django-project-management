@@ -27,6 +27,10 @@ user_risk_list_handler = Resource(UserRiskListHandler, **ad)
 deliverable_handler = Resource(DeliverableResourceHandler, **ad)
 deliverable_list_handler = Resource(DeliverableListHandler, **ad)
 
+# Handlers defined in lessons.api_views
+lesson_handler = Resource(LessonResourceHandler, **ad)
+lesson_list_handler = Resource(LessonListHandler, **ad)
+
 urlpatterns = patterns('',
     # URLs handled in projects.api_views
     (r'projects/(?P<project_number>[-\w\./\s]+)/team_managers/$', team_managers_handler),
@@ -44,5 +48,9 @@ urlpatterns = patterns('',
     # URLs handled in deliverables.api_views
     (r'deliverables/(?P<project_number>[-\w\./\s]+)/(?P<deliverable_id>[-\w\./\s]+)/$', deliverable_handler),
     (r'deliverables/(?P<project_number>[-\w\./\s]+)/$', deliverable_list_handler),
+
+    # URLs handled in lessons.api_views
+    (r'lessons/(?P<project_number>[-\w\./\s]+)/(?P<lesson_id>[-\w\./\s]+)/$', lesson_handler),
+    (r'lessons/(?P<project_number>[-\w\./\s]+)/$', lesson_list_handler),
 
 )
