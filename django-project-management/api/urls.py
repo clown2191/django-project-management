@@ -6,6 +6,15 @@ from projects.api_views import ProjectResourceHandler, ProjectListHandler, Compa
 from risks.api_views import RiskResourceHandler, RiskListHandler, \
         UserRiskListHandler
 from deliverables.api_views import DeliverableResourceHandler, DeliverableListHandler \
+from risks.api_views import RiskResourceHandler, RiskListHandler, \
+        UserRiskListHandler
+from wbs.api_views import WBSResourceHandler, WBSListHandler, \
+        WBSReorderHandler, UserWBSListHandler, StageplanResourceHandler, \
+        StageplanListHandler, EngineeringDayResourcehandler, \
+        EngineeringDayWBSListHandler, EngineeringDayProjectListHandler, \
+        UserEngineeringDayListHandler
+from lessons.api_views import LessonResourceHandler, LessonListHandler 
+
 
 auth = HttpBasicAuthentication(realm="My Realm")
 ad = { 'authentication': auth }
