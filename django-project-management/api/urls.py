@@ -1,14 +1,15 @@
 from django.conf.urls.defaults import *
 from piston.authentication import HttpBasicAuthentication
 from piston.resource import Resource
+from api.emitters import *
 from projects.api_views import ProjectResourceHandler, ProjectListHandler, CompanyListHandler, \
         TeamManagersListHandler, NonTeamManagersListHandler, ResourcesListHandler
-from deliverables.api_views import DeliverableResourceHandler, DeliverableListHandler \
+from deliverables.api_views import DeliverableResourceHandler, DeliverableListHandler 
 from risks.api_views import RiskResourceHandler, RiskListHandler, \
         UserRiskListHandler
 from wbs.api_views import WBSResourceHandler, WBSListHandler, \
-        WBSReorderHandler, UserWBSListHandler, StageplanResourceHandler, \
-        StageplanListHandler, EngineeringDayResourcehandler, \
+        UserWBSListHandler, StageplanResourceHandler, \
+        StageplanListHandler, EngineeringDayResourceHandler, \
         EngineeringDayWBSListHandler, EngineeringDayProjectListHandler, \
         UserEngineeringDayListHandler
 from lessons.api_views import LessonResourceHandler, LessonListHandler 
@@ -88,5 +89,6 @@ urlpatterns = patterns('',
     (r'engineeringdays/(?P<project_number>[-\w\./\s]+)/(?P<wbs_id>[-\w\./\s]+)$', engineeringday_wbs_list_handler),
     (r'engineeringdays/(?P<project_number>[-\w\./\s]+)/(?P<eday_id>[-\w\./\s]+)/$', engineeringday_handler),
     (r'resources/(?P<project_number>[-\w\./\s]+)/(?P<wbs_id>[-\w\./\s]+)/resources/$', engineeringday_resource_handler),
+    (r'engineeringdays/$', user_engineeringday_list_handler),
 
 )
