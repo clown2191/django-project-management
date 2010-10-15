@@ -3,8 +3,6 @@ from piston.authentication import HttpBasicAuthentication
 from piston.resource import Resource
 from projects.api_views import ProjectResourceHandler, ProjectListHandler, CompanyListHandler, \
         TeamManagersListHandler, NonTeamManagersListHandler, ResourcesListHandler
-from risks.api_views import RiskResourceHandler, RiskListHandler, \
-        UserRiskListHandler
 from deliverables.api_views import DeliverableResourceHandler, DeliverableListHandler \
 from risks.api_views import RiskResourceHandler, RiskListHandler, \
         UserRiskListHandler
