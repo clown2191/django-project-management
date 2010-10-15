@@ -55,10 +55,6 @@ engineeringday_wbs_list_handler = Resource(EngineeringDayWBSListHandler, **ad)
 engineeringday_resource_handler = Resource(EngineeringDayResourceFinderHandler, **ad)
 user_engineeringday_list_handler = Resource(UserEngineeringDayListHandler, **ad)
 
-# Handlers defined in lessons.api_views
-lesson_handler = Resource(LessonResourceHandler, **ad)
-lesson_list_handler = Resource(LessonListHandler, **ad)
-
 urlpatterns = patterns('',
     # URLs handled in projects.api_views
     (r'projects/(?P<project_number>[-\w\./\s]+)/team_managers/$', team_managers_handler),
@@ -95,7 +91,4 @@ urlpatterns = patterns('',
     (r'engineeringdays/(?P<project_number>[-\w\./\s]+)/(?P<eday_id>[-\w\./\s]+)/$', engineeringday_handler),
     (r'resources/(?P<project_number>[-\w\./\s]+)/(?P<wbs_id>[-\w\./\s]+)/resources/$', engineeringday_resource_handler),
 
-    # URLs handled in lessons.api_views
-    (r'lessons/(?P<project_number>[-\w\./\s]+)/(?P<lesson_id>[-\w\./\s]+)/$', lesson_handler),
-    (r'lessons/(?P<project_number>[-\w\./\s]+)/$', lesson_list_handler),
 )
