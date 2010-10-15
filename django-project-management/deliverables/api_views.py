@@ -33,7 +33,7 @@ class DeliverableResourceHandler(BaseHandler):
             return rc.FORBIDDEN
         return deliverable
 
-    def update(self, request, project_number, deliverable_number):
+    def update(self, request, project_number, deliverable_id):
         """ Update the deliverable """
 
         log.debug("PUT request from user %s for deliverable %s" % ( request.user, deliverable_id ))
@@ -45,7 +45,7 @@ class DeliverableResourceHandler(BaseHandler):
             log.debug("Refusing PUT request for project %s from user %s" % ( project_number, request.user ))
             return rc.FORBIDDEN
 
-        form = DeliverableForm(request.POST, instance=risk)
+        form = DeliverableForm(request.POST, instance=deliverable)
         if form.is_valid():
             t = form.save()
             log.debug('Saving %s back to database' % t)
