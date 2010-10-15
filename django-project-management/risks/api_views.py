@@ -147,9 +147,8 @@ class UserRiskListHandler(BaseHandler):
 
         risk_list = []
         projects = Project.objects.filter(active=True, read_acl__in=request.user.groups.all()).exclude(project_status=5).distinct()
-        for p in projects:
-            risk_list += p.risks.all()
-        return risk_list
+        risks = Risk.objects.filter(project__in=projects).filter(owner=request.user)
+        return risks
 
 
 def _calculate_risk(probability, impact):
