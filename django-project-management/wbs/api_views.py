@@ -3,7 +3,7 @@ from piston.handler import BaseHandler
 from piston.utils import rc, require_mime, require_extended, validate
 
 from projects.models import *
-from wbs.forms import WBSForm
+from wbs.forms import WBSForm, WBSProjectStage, EngineeringDayForm
 from wbs.models import *
 from projects.misc import handle_form_errors, check_project_read_acl, check_project_write_acl, return_json_success, handle_generic_error
 
