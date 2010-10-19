@@ -14,7 +14,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'dont_commit_me.sql'             # Or path to database file if using sqlite3.
+DATABASE_NAME = '/tmp/dpm.sql'             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
@@ -121,6 +121,8 @@ CMS_USE_TINYMCE = True
 SERIALIZATION_MODULES = {
     'json': 'wadofstuff.django.serializers.json'
 }
+
+LOGIN_URL = '/accounts/login'
 
 def get_debug_settings(log_name):
     log = logging.getLogger(log_name)

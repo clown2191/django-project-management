@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 from piston.authentication import HttpBasicAuthentication
 from piston.resource import Resource
 from api.emitters import *
+from api.authentication import DjangoAuthentication
 from projects.api_views import ProjectResourceHandler, ProjectListHandler, CompanyListHandler, \
         TeamManagersListHandler, NonTeamManagersListHandler, ResourcesListHandler
 from deliverables.api_views import DeliverableResourceHandler, DeliverableListHandler 
@@ -11,11 +12,11 @@ from wbs.api_views import WBSResourceHandler, WBSListHandler, \
         UserWBSListHandler, StageplanResourceHandler, \
         StageplanListHandler, EngineeringDayResourceHandler, \
         EngineeringDayWBSListHandler, EngineeringDayProjectListHandler, \
-        UserEngineeringDayListHandler
+        UserEngineeringDayListHandler, EngineeringDayResourceFinderHandler
 from lessons.api_views import LessonResourceHandler, LessonListHandler 
 
 
-auth = HttpBasicAuthentication(realm="My Realm")
+auth = DjangoAuthentication()
 ad = { 'authentication': auth }
 
 # Handlers defined in projects.api_views
