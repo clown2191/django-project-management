@@ -152,6 +152,16 @@
 											}
 										},
 										{
+											"id": "MyMenuItem12",
+											"cid": "menuitem",
+											"jsClass": "MyMenuItem4",
+											"snapToGrid": 10,
+											"userConfig": {
+												"text": "Add Work Item",
+												"id": "menu_add_wbs"
+											}
+										},
+										{
 											"id": "MyMenuItem5",
 											"cid": "menuitem",
 											"jsClass": "MyMenuItem5",
@@ -223,7 +233,7 @@
 					"jsClass": "MyTabPanel",
 					"snapToGrid": 10,
 					"userConfig": {
-						"activeTab": 2,
+						"activeTab": 3,
 						"title": "-ext-undefined-",
 						"height": 462,
 						"padding": "15px"
@@ -642,7 +652,7 @@
 											]
 										},
 										{
-											"id": "MyPanel12",
+											"id": "MyPanel23",
 											"cid": "panel",
 											"jsClass": "MyPanel10",
 											"snapToGrid": 10,
@@ -686,7 +696,7 @@
 											"snapToGrid": 10,
 											"userConfig": {
 												"title": "-ext-undefined-",
-												"store": "st_risks",
+												"store": "st_wbs",
 												"id": "grid_wbs",
 												"region": "west",
 												"split": true,
@@ -718,7 +728,8 @@
 															"jsClass": "MyButton2",
 															"snapToGrid": 10,
 															"userConfig": {
-																"text": "Add Work Item"
+																"text": "Add Work Item",
+																"id": "btn_add_wbs"
 															}
 														},
 														{
@@ -979,7 +990,7 @@
 											"userConfig": {
 												"title": "-ext-undefined-",
 												"region": "center",
-												"id": "panel_risks_detail",
+												"id": "panel_wbs_detail",
 												"html": "Please select an object to see more details",
 												"padding": "12px"
 											}
@@ -1330,7 +1341,7 @@
 											"userConfig": {
 												"title": "-ext-undefined-",
 												"region": "center",
-												"id": "panel_issues_detail",
+												"id": "panel_lessons_detail",
 												"html": "Please select an object to see more details",
 												"padding": "12px"
 											}
@@ -1494,7 +1505,7 @@
 											"userConfig": {
 												"title": "-ext-undefined-",
 												"region": "center",
-												"id": "panel_issues_detail",
+												"id": "panel_reports_detail",
 												"html": "Please select an object to see more details",
 												"padding": "12px"
 											}
@@ -1644,7 +1655,7 @@
 											"userConfig": {
 												"title": "-ext-undefined-",
 												"region": "center",
-												"id": "panel_issues_detail",
+												"id": "panel_files_detail",
 												"html": "Please select an object to see more details",
 												"padding": "12px"
 											}
@@ -1950,6 +1961,273 @@
 					"userConfig": {
 						"name": "data",
 						"mapping": "username"
+					}
+				}
+			]
+		},
+		{
+			"id": "MyStore4",
+			"cid": "jsonstore",
+			"jsClass": "StoreStagePlan",
+			"snapToGrid": 10,
+			"userConfig": {
+				"storeId": "st_stage_plan",
+				"root": "data"
+			},
+			"cn": [
+				{
+					"id": "MyField27",
+					"cid": "datafield",
+					"jsClass": "MyField23",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "id",
+						"mapping": "id"
+					}
+				},
+				{
+					"id": "MyField28",
+					"cid": "datafield",
+					"jsClass": "MyField24",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "stage",
+						"mapping": "stage"
+					}
+				},
+				{
+					"id": "MyField29",
+					"cid": "datafield",
+					"jsClass": "MyField29",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "description",
+						"mapping": "description"
+					}
+				},
+				{
+					"id": "MyField30",
+					"cid": "datafield",
+					"jsClass": "MyField30",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "stage_number",
+						"mapping": "stage_number"
+					}
+				}
+			]
+		},
+		{
+			"id": "MyStore3",
+			"cid": "jsonstore",
+			"jsClass": "StoreWBS",
+			"snapToGrid": 10,
+			"userConfig": {
+				"storeId": "st_wbs",
+				"root": "data"
+			},
+			"cn": [
+				{
+					"id": "MyField25",
+					"cid": "datafield",
+					"jsClass": "MyField25",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "id",
+						"mapping": "id"
+					}
+				},
+				{
+					"id": "MyField26",
+					"cid": "datafield",
+					"jsClass": "MyField26",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "skill_set",
+						"mapping": "skill_set"
+					}
+				},
+				{
+					"id": "MyField31",
+					"cid": "datafield",
+					"jsClass": "MyField31",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "project_stage",
+						"mapping": "project_stage"
+					}
+				},
+				{
+					"id": "MyField32",
+					"cid": "datafield",
+					"jsClass": "MyField32",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "author",
+						"mapping": "author"
+					}
+				},
+				{
+					"id": "MyField33",
+					"cid": "datafield",
+					"jsClass": "MyField33",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "title",
+						"mapping": "title"
+					}
+				},
+				{
+					"id": "MyField34",
+					"cid": "datafield",
+					"jsClass": "MyField34",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "depends",
+						"mapping": "depends"
+					}
+				},
+				{
+					"id": "MyField35",
+					"cid": "datafield",
+					"jsClass": "MyField35",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "description",
+						"mapping": "description"
+					}
+				},
+				{
+					"id": "MyField36",
+					"cid": "datafield",
+					"jsClass": "MyField36",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "duration",
+						"mapping": "duration"
+					}
+				},
+				{
+					"id": "MyField37",
+					"cid": "datafield",
+					"jsClass": "MyField37",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "owner",
+						"mapping": "owner"
+					}
+				},
+				{
+					"id": "MyField38",
+					"cid": "datafield",
+					"jsClass": "MyField38",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "percent_complete",
+						"mapping": "percent_complete"
+					}
+				},
+				{
+					"id": "MyField39",
+					"cid": "datafield",
+					"jsClass": "MyField39",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "start_date",
+						"mapping": "start_date",
+						"type": "date"
+					}
+				},
+				{
+					"id": "MyField40",
+					"cid": "datafield",
+					"jsClass": "MyField40",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "finish_date",
+						"mapping": "finish_date",
+						"type": "date"
+					}
+				},
+				{
+					"id": "MyField41",
+					"cid": "datafield",
+					"jsClass": "MyField41",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "wbs_number",
+						"mapping": "wbs_number"
+					}
+				},
+				{
+					"id": "MyField42",
+					"cid": "datafield",
+					"jsClass": "MyField42",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "cost",
+						"mapping": "cost"
+					}
+				},
+				{
+					"id": "MyField43",
+					"cid": "datafield",
+					"jsClass": "MyField43",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "history",
+						"mapping": "history"
+					}
+				},
+				{
+					"id": "MyField44",
+					"cid": "datafield",
+					"jsClass": "MyField44",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "history_html",
+						"mapping": "history_html"
+					}
+				},
+				{
+					"id": "MyField45",
+					"cid": "datafield",
+					"jsClass": "MyField45",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "engineering_days",
+						"mapping": "engineering_days"
+					}
+				},
+				{
+					"id": "MyField46",
+					"cid": "datafield",
+					"jsClass": "MyField46",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "get_work_item_status",
+						"mapping": "get_work_item_status"
+					}
+				},
+				{
+					"id": "MyField47",
+					"cid": "datafield",
+					"jsClass": "MyField47",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "created_date",
+						"mapping": "created_date",
+						"type": "date"
+					}
+				},
+				{
+					"id": "MyField48",
+					"cid": "datafield",
+					"jsClass": "MyField48",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "modified_date",
+						"mapping": "modified_date"
 					}
 				}
 			]
