@@ -88,7 +88,7 @@ class WBSListHandler(BaseHandler):
     """
 
     allowed_methods  = ('GET', 'POST')
-    models = WorkItem
+    model = WorkItem
 
     @validate(WBSForm)
     def create(self, request, project_number):
@@ -108,6 +108,18 @@ class WBSListHandler(BaseHandler):
         proj.save()
         return t
 
+    def read(self, request, project_number):
+        """ Get a list of all Work Items for the project """
+
+        log.debug("GET request from user %s for wbs list" % request.user)
+        proj = Project.objects.get(project_number=project_number)
+
+        if not check_project_read_acl(proj, request.user):
+            log.debug("Refusing GET request for project list %s from user %s" % ( project_number, request.user ))
+            return rc.FORBIDDEN
+
+        return WorkItem.objects.filter(project_stage__project=proj)
+
 class UserWBSListHandler(BaseHandler):
     """ 
     URI: /api/wbs/
@@ -117,7 +129,7 @@ class UserWBSListHandler(BaseHandler):
     """
 
     allowed_methods  = ('GET',)
-    models = WorkItem
+    model = WorkItem
 
     def read(self, request, project_number):
         """ Return a list of work items associated with projects filtered by ACL """
@@ -137,7 +149,7 @@ class StageplanListHandler(BaseHandler):
     """
 
     allowed_methods = ('GET', 'POST')
-    models = ProjectStage
+    model = ProjectStage
 
     @validate(WBSProjectStage)
     def create(self, request, project_number):
