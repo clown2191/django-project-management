@@ -1,3 +1,5 @@
 <script type="text/javascript" src="MyPanel.ui.js"></script>
 <script type="text/javascript" src="MyPanel.js"></script>
-<script type="text/javascript" src="st_deliverables.js"></script>
+<script type="text/javascript" src="StoreDeliverables.js"></script>
+<script type="text/javascript" src="StoreRisks.js"></script>
+<script type="text/javascript" src="StoreResources.js"></script>

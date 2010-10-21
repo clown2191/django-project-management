@@ -33,12 +33,64 @@
 					},
 					"cn": [
 						{
+							"id": "MyButton25",
+							"cid": "button",
+							"jsClass": "MyButton25",
+							"snapToGrid": 10,
+							"userConfig": {
+								"text": "Add",
+								"id": "btn_add_items"
+							},
+							"cn": [
+								{
+									"id": "MyMenu2",
+									"cid": "menu",
+									"jsClass": "MyMenu2",
+									"dock": "menu",
+									"snapToGrid": 10,
+									"userConfig": {
+										"id": "menu_add_items"
+									},
+									"cn": [
+										{
+											"id": "MyMenuItem10",
+											"cid": "menuitem",
+											"jsClass": "MyMenuItem10",
+											"snapToGrid": 10,
+											"userConfig": {
+												"text": "Add Company"
+											}
+										},
+										{
+											"id": "MyMenuItem9",
+											"cid": "menuitem",
+											"jsClass": "MyMenuItem9",
+											"snapToGrid": 10,
+											"userConfig": {
+												"text": "Add Project",
+												"id": "menu_add_project"
+											}
+										},
+										{
+											"id": "MyMenuItem11",
+											"cid": "menuitem",
+											"jsClass": "MyMenuItem11",
+											"snapToGrid": 10,
+											"userConfig": {
+												"text": "Add Skillset"
+											}
+										}
+									]
+								}
+							]
+						},
+						{
 							"id": "MyButton",
 							"cid": "button",
 							"jsClass": "MyButton",
 							"snapToGrid": 10,
 							"userConfig": {
-								"text": "Manage Project",
+								"text": "Manage",
 								"id": "btn_manage_project"
 							},
 							"cn": [
@@ -68,7 +120,8 @@
 											"jsClass": "MyMenuItem1",
 											"snapToGrid": 10,
 											"userConfig": {
-												"text": "Add Risk"
+												"text": "Add Risk",
+												"id": "menu_add_risk"
 											}
 										},
 										{
@@ -170,7 +223,7 @@
 					"jsClass": "MyTabPanel",
 					"snapToGrid": 10,
 					"userConfig": {
-						"activeTab": 1,
+						"activeTab": 2,
 						"title": "-ext-undefined-",
 						"height": 462,
 						"padding": "15px"
@@ -462,7 +515,8 @@
 															"jsClass": "MyButton2",
 															"snapToGrid": 10,
 															"userConfig": {
-																"text": "Add Risk"
+																"text": "Add Risk",
+																"id": "btn_add_risk"
 															}
 														},
 														{
@@ -1608,13 +1662,13 @@
 		{
 			"id": "MyStore",
 			"cid": "jsonstore",
-			"jsClass": "st_deliverables",
+			"jsClass": "StoreDeliverables",
 			"snapToGrid": 10,
 			"userConfig": {
 				"storeId": "st_deliverables",
 				"root": "data",
-				"url": "http://localhost:8000/api/deliverables/12345/?format=ext-json",
-				"autoLoad": true
+				"url": "",
+				"autoLoad": "-ext-undefined-"
 			},
 			"cn": [
 				{
@@ -1633,7 +1687,7 @@
 					"jsClass": "MyField1",
 					"snapToGrid": 10,
 					"userConfig": {
-						"name": "pk",
+						"name": "id",
 						"mapping": "id"
 					}
 				},
@@ -1663,7 +1717,239 @@
 					"jsClass": "MyField4",
 					"snapToGrid": 10,
 					"userConfig": {
-						"name": "field"
+						"name": "testing_method",
+						"mapping": "testing_method"
+					}
+				},
+				{
+					"id": "MyField5",
+					"cid": "datafield",
+					"jsClass": "MyField5",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "expected_result",
+						"mapping": "expected_result"
+					}
+				},
+				{
+					"id": "MyField6",
+					"cid": "datafield",
+					"jsClass": "MyField6",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "rpo",
+						"mapping": "rpo"
+					}
+				},
+				{
+					"id": "MyField7",
+					"cid": "datafield",
+					"jsClass": "MyField7",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "rto",
+						"mapping": "rto"
+					}
+				},
+				{
+					"id": "MyField8",
+					"cid": "datafield",
+					"jsClass": "MyField8",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "created_date",
+						"mapping": "created_date",
+						"type": "date"
+					}
+				},
+				{
+					"id": "MyField9",
+					"cid": "datafield",
+					"jsClass": "MyField9",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "modified_date",
+						"mapping": "modified_date",
+						"type": "date"
+					}
+				}
+			]
+		},
+		{
+			"id": "MyStore1",
+			"cid": "jsonstore",
+			"jsClass": "StoreRisks",
+			"snapToGrid": 10,
+			"userConfig": {
+				"storeId": "st_risks",
+				"root": "data"
+			},
+			"cn": [
+				{
+					"id": "MyField10",
+					"cid": "datafield",
+					"jsClass": "MyField10",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "id",
+						"mapping": "id"
+					}
+				},
+				{
+					"id": "MyField11",
+					"cid": "datafield",
+					"jsClass": "MyField11",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "risk_number",
+						"mapping": "risk_number"
+					}
+				},
+				{
+					"id": "MyField12",
+					"cid": "datafield",
+					"jsClass": "MyField12",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "description",
+						"mapping": "description"
+					}
+				},
+				{
+					"id": "MyField13",
+					"cid": "datafield",
+					"jsClass": "MyField13",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "owner",
+						"mapping": "owner"
+					}
+				},
+				{
+					"id": "MyField14",
+					"cid": "datafield",
+					"jsClass": "MyField14",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "probability",
+						"mapping": "probability",
+						"type": "-ext-undefined-"
+					}
+				},
+				{
+					"id": "MyField15",
+					"cid": "datafield",
+					"jsClass": "MyField15",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "impact",
+						"mapping": "impact",
+						"type": "-ext-undefined-"
+					}
+				},
+				{
+					"id": "MyField16",
+					"cid": "datafield",
+					"jsClass": "MyField16",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "rating",
+						"mapping": "rating",
+						"type": "-ext-undefined-"
+					}
+				},
+				{
+					"id": "MyField17",
+					"cid": "datafield",
+					"jsClass": "MyField17",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "history",
+						"mapping": "history"
+					}
+				},
+				{
+					"id": "MyField18",
+					"cid": "datafield",
+					"jsClass": "MyField18",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "history_html",
+						"mapping": "history_html"
+					}
+				},
+				{
+					"id": "MyField19",
+					"cid": "datafield",
+					"jsClass": "MyField19",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "counter_measure",
+						"mapping": "counter_measure"
+					}
+				},
+				{
+					"id": "MyField20",
+					"cid": "datafield",
+					"jsClass": "MyField20",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "status",
+						"mapping": "status"
+					}
+				},
+				{
+					"id": "MyField21",
+					"cid": "datafield",
+					"jsClass": "MyField21",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "created_date",
+						"mapping": "created_date",
+						"type": "date"
+					}
+				},
+				{
+					"id": "MyField22",
+					"cid": "datafield",
+					"jsClass": "MyField22",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "modified_date",
+						"mapping": "modified_date",
+						"type": "date"
+					}
+				}
+			]
+		},
+		{
+			"id": "MyStore2",
+			"cid": "jsonstore",
+			"jsClass": "StoreResources",
+			"snapToGrid": 10,
+			"userConfig": {
+				"storeId": "st_resources",
+				"root": "data"
+			},
+			"cn": [
+				{
+					"id": "MyField23",
+					"cid": "datafield",
+					"jsClass": "MyField23",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "id",
+						"mapping": "id"
+					}
+				},
+				{
+					"id": "MyField24",
+					"cid": "datafield",
+					"jsClass": "MyField24",
+					"snapToGrid": 10,
+					"userConfig": {
+						"name": "data",
+						"mapping": "username"
 					}
 				}
 			]
