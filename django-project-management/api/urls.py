@@ -12,7 +12,8 @@ from wbs.api_views import WBSResourceHandler, WBSListHandler, \
         UserWBSListHandler, StageplanResourceHandler, \
         StageplanListHandler, EngineeringDayResourceHandler, \
         EngineeringDayWBSListHandler, EngineeringDayProjectListHandler, \
-        UserEngineeringDayListHandler, EngineeringDayResourceFinderHandler
+        UserEngineeringDayListHandler, EngineeringDayResourceFinderHandler, \
+        SkillsetListHandler
 from lessons.api_views import LessonResourceHandler, LessonListHandler 
 
 
@@ -41,6 +42,7 @@ lesson_handler = Resource(LessonResourceHandler, **ad)
 lesson_list_handler = Resource(LessonListHandler, **ad)
 
 # Handlers defined in wbs.api_views
+skillset_list_handler = Resource(SkillsetListHandler, **ad)
 wbs_handler = Resource(WBSResourceHandler, **ad)
 wbs_list_handler = Resource(WBSListHandler, **ad)
 #wbs_reorder_handler = Resource(WBSReorderHandler, **ad)
@@ -63,6 +65,7 @@ urlpatterns = patterns('',
     (r'projects/(?P<project_number>[-\w\./\s]+)/$', project_handler),
     (r'projects/$', project_list_handler),
     (r'companies/$', company_list_handler),
+    (r'skillsets/$', skillset_list_handler),
 
     # URLs handled in risks.api_views
     (r'risks/(?P<project_number>[-\w\./\s]+)/(?P<risk_number>[-\w\./\s]+)/$', risk_handler),

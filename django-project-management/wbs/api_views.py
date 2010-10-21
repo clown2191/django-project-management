@@ -468,6 +468,19 @@ class UserEngineeringDayListHandler(BaseHandler):
         return EngineeringDay.objects.filter(work_items__project_stage__project__in=projects).filter(resource=request.user)
         
         
+class SkillsetListHandler(BaseHandler):
+    """
+    URL: /api/skillsets/
+    VERBS: GET
+
+    Return a skillsets configured in the tool
+    """
+
+    allowed_methods = ('GET',)
+
+    def read(self, request):
+        log.debug("GET request from user %s for skillsets" % request.user)
+        return SkillSet.objects.all()
 
                 
 

@@ -200,16 +200,3 @@ class ResourcesListHandler(BaseHandler):
             return rc.FORBIDDEN
         return User.objects.filter(is_active=True, groups__in=proj.read_acl.all()).distinct().order_by('first_name')
 
-class SkillsetListHandler(BaseHandler):
-    """
-    URL: /api/skillsets/
-    VERBS: GET
-
-    Return a skillsets configured in the tool
-    """
-
-    allowed_methods = ('GET',)
-
-    def read(self, request):
-        log.debug("GET request from user %s for skillsets" % request.user)
-        return Skillset.objects.all()
