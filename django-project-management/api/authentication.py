@@ -1,5 +1,7 @@
 REDIRECT_FIELD_NAME = None
 import settings
+from django.utils.http import urlquote
+from django.http import HttpResponse, HttpResponseRedirect
 
 class DjangoAuthentication(object):
     """
