@@ -20,6 +20,7 @@ class DeliverableResourceHandler(BaseHandler):
 
     allowed_methods = ('GET', 'PUT', 'DELETE')
     model = Deliverable
+    exclude = []
 
     def read(self, request, project_number, deliverable_id):
         """ View a deliverable """
@@ -83,6 +84,7 @@ class DeliverableListHandler(BaseHandler):
 
     allowed_methods  = ('GET', 'POST')
     models = Deliverable
+    exclude = []
 
     @validate(DeliverableForm)
     def create(self, request, project_number):
